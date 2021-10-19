@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { GetStaticProps } from "next";
+import React from "react";
 
 import Head from "next/head";
 import Title from "../components/Title";
 
 import { getProducts, Product } from "../lib/products";
+interface HomePageProps {
+  products: Product[];
+}
 
-const HomePage: React.FC = () => {
-  const [products, setProducts] = useState([]);
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const products = await getProducts();
+  return { props: { products } };
+};
 
-  useEffect(() => {
-    getProducts().then(setProducts);
-  }, []);
-
+const HomePage: React.FC<HomePageProps> = ({ products }) => {
   return (
     <>
       <Head>
