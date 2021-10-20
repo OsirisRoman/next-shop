@@ -1,5 +1,8 @@
-// Option SSR 2: Fetch products on the server side but
+// Option 2 SSR with ISR: Fetch products on the server side but
 // with Incremental Static Regeneration(ISR) in getStaticProps
+// the ISR re-fetch the data at regular intervals of time, the
+// revalidate option in this case re-fetched the products in
+// intervals of 30 seconds.
 
 import { GetStaticProps } from "next";
 import React from "react";

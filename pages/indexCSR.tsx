@@ -1,23 +1,20 @@
-// Option 4 SSR with server side props: Fetch products on the server side
+// Option 1 CSR: Fetch products on the client side
+// making use of React Hooks
 
-import { GetServerSideProps } from "next";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Head from "next/head";
 import Title from "../components/Title";
 
 import { getProducts, Product } from "../lib/products";
-interface HomePageProps {
-  products: Product[];
-}
 
-export const getServerSideProps: GetServerSideProps<HomePageProps> =
-  async () => {
-    const products = await getProducts();
-    return { props: { products } };
-  };
+const HomePage: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
 
-const HomePage: React.FC<HomePageProps> = ({ products }) => {
+  useEffect(() => {
+    getProducts().then(setProducts);
+  }, []);
+
   return (
     <>
       <Head>

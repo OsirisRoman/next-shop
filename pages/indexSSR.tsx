@@ -1,3 +1,5 @@
+// Option 1 SSR with static props: Fetch products on the server side
+
 import { GetStaticProps } from "next";
 import React from "react";
 
