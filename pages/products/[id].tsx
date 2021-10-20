@@ -27,7 +27,7 @@ export const getStaticPaths: GetStaticPaths<ProductPageParams> = async () => {
     //The fallback: false property tells nextjs that if
     //the path do not find any match, the 404 not
     //found page should be showed up
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
