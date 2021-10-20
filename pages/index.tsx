@@ -1,6 +1,4 @@
-// Option 4 SSR with server side props: Fetch products on the server side
-
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import React from "react";
 
 import Head from "next/head";
@@ -11,11 +9,13 @@ interface HomePageProps {
   products: Product[];
 }
 
-export const getServerSideProps: GetServerSideProps<HomePageProps> =
-  async () => {
-    const products = await getProducts();
-    return { props: { products } };
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const products = await getProducts();
+  return {
+    props: { products },
+    revalidate: 5 * 60, // 5 minutes
   };
+};
 
 const HomePage: React.FC<HomePageProps> = ({ products }) => {
   return (
