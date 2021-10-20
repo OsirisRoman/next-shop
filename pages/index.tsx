@@ -15,11 +15,12 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   const products = await getProducts();
   return {
     props: { products },
-    revalidate: 5 * 60, // 5 minutes
+    revalidate: 30, // 5 minutes
   };
 };
 
 const HomePage: React.FC<HomePageProps> = ({ products }) => {
+  console.log("[HomePage] renders");
   return (
     <>
       <Head>

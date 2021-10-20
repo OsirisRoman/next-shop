@@ -38,10 +38,12 @@ export const getStaticProps: GetStaticProps<
   const product = await getProduct(id);
   return {
     props: { product },
+    revalidate: 30, // 5 minutes
   };
 };
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
+  console.log("[ProductPage] renders");
   return (
     <>
       <Head>
