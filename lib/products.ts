@@ -6,14 +6,16 @@ export interface Product {
   title: string;
   description: string;
   price: string;
+  pictureUrl: string;
 }
 
-const stripProduct = (product: Product): Product => {
+const stripProduct = (product: any): Product => {
   return {
     id: product.id,
     title: product.title,
     description: product.description,
-    price: "$" + (+product.price).toFixed(2),
+    price: "$" + product.price.toFixed(2),
+    pictureUrl: CMS_URL + product.picture.url,
   };
 };
 
