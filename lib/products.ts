@@ -5,6 +5,7 @@ export interface Product {
   id: number;
   title: string;
   description: string;
+  price: string;
 }
 
 const stripProduct = (product: Product): Product => {
@@ -12,6 +13,7 @@ const stripProduct = (product: Product): Product => {
     id: product.id,
     title: product.title,
     description: product.description,
+    price: "$" + (+product.price).toFixed(2),
   };
 };
 
