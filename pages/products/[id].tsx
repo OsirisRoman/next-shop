@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
 
 import { ParsedUrlQuery } from "querystring";
 
@@ -59,7 +60,15 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
       </Head>
       <main className="px-6 py-4">
         <Title>{product.title}</Title>
-        <p>{product.description}</p>
+        <div className="border shadow hover:shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <Image src={product.pictureUrl} alt="" width={640} height={480} />
+            <div>
+              <p className="text-sm">{product.description}</p>
+              <div className="text-lg font-bold">{product.price}</div>
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );
