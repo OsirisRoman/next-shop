@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<
     const product = await getProduct(id);
     return {
       props: { product },
-      revalidate: 30, // 5 minutes
+      revalidate: parseInt(process.env.REVALIDATE_TIME),
     };
   } catch (err) {
     if (err instanceof ApiError && err.status === 404) {
