@@ -35,11 +35,15 @@ export const getStaticProps: GetStaticProps<
   ProductPageProps,
   ProductPageParams
 > = async ({ params: { id } }) => {
-  const product = await getProduct(id);
-  return {
-    props: { product },
-    revalidate: 30, // 5 minutes
-  };
+  try {
+    const product = await getProduct(id);
+    return {
+      props: { product },
+      revalidate: 30, // 5 minutes
+    };
+  } catch (err) {
+    return { notFound: true };
+  }
 };
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {

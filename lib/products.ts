@@ -14,6 +14,9 @@ const stripProduct = (product: any): Product => {
 
 export const getProduct = async (id: string): Promise<Product> => {
   const response = await fetch(`http://localhost:1337/products/${id}`);
+  if (!response.ok) {
+    throw new Error(`Request failed: ${response.status}`);
+  }
   const product = await response.json();
   return stripProduct(product);
 };
